@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Poppins:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+:root {
+  --ink-900: #1d2430;
+  --ink-700: #3f4e63;
+  --sand-100: #fbf8f2;
+  --sand-200: #efe8da;
+  --accent-500: #dd6f2d;
+  --accent-700: #8a3b17;
+  --color-green: #059669;
+  --color-blue: #1e40af;
+  --color-white: #ffffff;
+  --color-w: #f9fafb;
+  --color-b: #0d141a;
+  --color-light-gray: #b8c0cc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  color: var(--color-b);
+  background:
+    radial-gradient(circle at 10% 20%, rgba(194, 193, 192, 0.12), transparent 28%),
+    radial-gradient(circle at 85% 10%, rgba(63, 78, 99, 0.15), transparent 30%),
+    linear-gradient(180deg, var(--color-light-gray), #ffffff 10%);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'DM Serif Display', serif;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.page-enter {
+  animation: fade-in 150ms ease-out both;
+}
+
+.products-skeleton-exit {
+  animation: fade-out 100ms ease-in forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.green-button {
+  background-color: var(--color-green);
+  color: var(--color-white);
+  transition: all 0.3s ease;
+}
+
+.green-button:hover {
+  background-color: var(--color-blue);
+}
+
+.blue-button {
+  background-color: var(--color-blue);
+  color: var(--color-white);
+  transition: all 0.3s ease;
+}
+
+.blue-button:hover {
+  background-color: var(--color-green);
+}
+
+.plain-button {
+  background-color: transparent;
+  color: var(--color-black);
+  transition: all 0.3s ease;
+  border: 1px solid var(--color-black);
+}
+
+.plain-button:hover{
+  border: 1px solid var(--color-green);
+  color: var(--color-green);
+}
