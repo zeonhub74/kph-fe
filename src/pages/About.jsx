@@ -1,4 +1,4 @@
-﻿import PageIntro from '../components/PageIntro'
+﻿import PageIntro from '@/components/PageIntro'
 
 function About() {
   return (
