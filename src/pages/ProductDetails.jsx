@@ -5,9 +5,11 @@ import { useShopifyProducts } from '../hooks/api/useShopifyProducts'
 import { useCart } from '../hooks/api/useCart'
 import JoinBanner from '../components/ui/join-banner'
 import { useProductSettings } from '../context/ProductSettingsContext'
+import { useNavigate } from "react-router-dom";
 
 function ProductDetails() {
   const { handle } = useParams()
+  const navigate = useNavigate();
   const { fetchProductByHandle, loading, error } = useShopifyProducts()
   const { buyNow, loading: buyLoading, error: buyError } = useCart()
   const [product, setProduct] = useState(null)
@@ -171,12 +173,12 @@ function ProductDetails() {
               </div>
             ) : null}
 
-            <a
-              href="/products"
+            <button
+              onClick={() => navigate(-1)}
               className="mt-4 block text-sm text-(--color-b)/50 hover:underline"
             >
               Back
-            </a>
+            </button>
           </div>
         </section>
         </div>
