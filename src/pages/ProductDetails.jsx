@@ -171,27 +171,6 @@ function ProductDetails() {
               </div>
             ) : null}
 
-            <div className="mt-4 flex items-center gap-2">
-              <label htmlFor="quantity" className="text-sm text-(--ink-700)">Qty</label>
-              <input
-                id="quantity"
-                type="number"
-                min="1"
-                value={quantity}
-                onChange={(event) => setQuantity(Math.max(1, Number(event.target.value) || 1))}
-                className="w-16 rounded-base border border-(--sand-200) px-2 py-1 text-sm"
-              />
-            </div>
-
-            <button
-              type="button"
-              onClick={handleBuyNow}
-              disabled={!selectedVariant || !selectedVariant.availableForSale || buyLoading}
-              className="mt-4 inline-block rounded-2xl green-button px-5 py-2 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              {buyLoading ? 'Redirecting…' : selectedVariant && !selectedVariant.availableForSale ? 'Sold out' : 'Buy Now'}
-            </button>
-
             <a
               href="/products"
               className="mt-4 block text-sm text-(--color-b)/50 hover:underline"
