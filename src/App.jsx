@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
+import Terms from './pages/Terms'
 import PageLayout from './components/PageLayout'
 import About from './pages/About'
 import Dashboard from './pages/admin/Dashboard'
@@ -58,6 +59,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/terms" element={<Terms />} />
         <Route
           path="/profile"
           element={(

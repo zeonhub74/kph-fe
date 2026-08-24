@@ -1,5 +1,5 @@
 ﻿import { NavLink } from 'react-router-dom'
-import { sessionHasAdminRole, useAuthSession } from '../hooks/api/useLogin'
+import { sessionHasAdminRole, useAuthSession } from '@/hooks/api/useLogin'
 
 const navItems = [
   { to: '/', label: 'Home' },
