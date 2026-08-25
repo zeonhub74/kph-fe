@@ -276,15 +276,15 @@ export default function Refund() {
             </p>
             <ul className="mt-3 list-disc space-y-1 pl-5">
               <li>Product inquiries</li>
-              <li>Filter replacement guidance</li>
+              <li>Filter rseplacement guidance</li>
               <li>Maintenance questions</li>
               <li>Installation concerns</li>
               <li>Registering your product ensures warranty coverage, faster support, and access to exclusive offers.</li>
               <li>Warranty coverage depends on the specific product purchased.</li>
             </ul>
             <p className="mt-3">
-              Customers should keep their proof of purchase for warranty claims and register their 
-              product at email: 
+              Customers should keep their proof of purchase for warranty claims and register 
+              their product at our customer portal 
               <a href="https://customer.karitonph.com" 
               className="font-medium text-(--color-blue) underline-offset-4 hover:underline hover:text-(--color-green)">
               customer.karitonph.com</a>.
