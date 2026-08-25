@@ -15,10 +15,10 @@ export default function Refund() {
       <article className="mx-auto max-w-3xl">
         <header className="border-b border-border pb-8">
           <p className="mb-3 text-sm font-medium text-primary">Kariton PH</p>
-          <h2 className="text-3xl font-bold text-foreground sm:text-4xl">
+          <h2 className="text-2xl font-bold text-foreground sm:text-2xl">
             Delivery and Return Policy
           </h2>
-          <h1 className="text-3xl font-bold text-foreground sm:text-4xl">
+          <h1 className="text-3xl font-bold text-foreground sm:text-3xl">
             We're Here to Help
           </h1>
           <p className="mt-4 leading-7 text-muted-foreground">
