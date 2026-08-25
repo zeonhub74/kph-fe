@@ -77,7 +77,7 @@ export default function Terms() {
               For information regarding product returns, replacements, cancellations, and refunds, 
               including applicable timeframes, eligibility requirements, return conditions, and any 
               applicable exceptions, please refer to our{' '}
-              <Link to="/ref" className="underline text-blue-600 hover:text-(--color-blue)">
+              <Link to="/ref" className="underline text-text-(--color-blue) hover:text-(--color-green)">
                 Return and Refund Policy
               </Link>
             </p>
