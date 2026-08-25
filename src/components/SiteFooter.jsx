@@ -55,7 +55,7 @@ function SiteFooter() {
               to="/refund"
               className="transition-colors hover:text-(--color-blue) text-(--color-light-gray)"
             > 
-              Return Policy
+              Delivery and After-Sales Policy
             </Link>
           </nav>
           <p className="text-xs text-muted-foreground text-(--color-light-gray)">
