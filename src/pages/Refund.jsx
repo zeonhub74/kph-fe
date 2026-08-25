@@ -173,14 +173,24 @@ export default function Refund() {
             </ul>
             <p className="mt-3">Send your request through:</p>
             <ul className="mt-3 list-disc space-y-1 pl-5">
-              <li>Facebook Messenger: [Insert Messenger Link]</li>
+              <li>
+                Facebook Messenger:{" "}
+                <a
+                  href="https://www.facebook.com/karitonphpurewater"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-primary underline-offset-4 hover:underline"
+                >
+                  https://www.facebook.com/karitonphpurewater
+                </a>
+              </li>
               <li>
                 Email:{" "}
                 <a
-                  href="mailto:karitonph@gmail.com"
+                  href="mailto:admin@karitonph.com"
                   className="font-medium text-primary underline-offset-4 hover:underline"
                 >
-                  karitonph@gmail.com
+                  admin@karitonph.com
                 </a>
               </li>
             </ul>
@@ -249,10 +259,10 @@ export default function Refund() {
               If you have any questions or concerns regarding this policy,
               please contact us at{" "}
               <a
-                href="mailto:karitonph@gmail.com"
+                href="mailto:admin@karitonph.com"
                 className="font-medium text-primary underline-offset-4 hover:underline"
               >
-                karitonph@gmail.com
+                admin@karitonph.com 
               </a>
               .
             </p>

@@ -51,10 +51,10 @@ function About() {
             <li>
               <span className="font-medium">Email:</span>{' '}
               <a
-                href="mailto:admin@karitonPH.com"
+                href="mailto:admin@karitonph.com"
                 className="text-(--color-blue) hover:underline"
               >
-                admin@karitonPH.com
+                admin@karitonph.com
               </a>
             </li>
             <li>
