@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function JoinBanner() {
   return (
     <div className="flex w-full justify-center mt-6 bg-(--color-light-gray)/20 py-6">
@@ -9,11 +11,13 @@ function JoinBanner() {
         </p>
 
         <a
-          href="/products"
-          className="plain-button mt-2 inline-block rounded-full px-4 py-2 text-sm min-w-sm"
-        >
-          Become a Seller
-        </a>
+        href="https://www.facebook.com/karitonphpurewater"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="plain-button mt-2 inline-block rounded-full px-4 py-2 text-sm min-w-sm"
+      >
+        Become a Seller
+      </a>
       </div>
     </div>
   )
