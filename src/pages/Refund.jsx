@@ -251,26 +251,47 @@ export default function Refund() {
 
           <RefundSectionItem
             number="9"
+            title="Service Center Inspection and Repair"
+          >
+            <p>
+              For product concerns covered under warranty or after-sales support, customers may be required to send or bring the 
+              product to an authorized KaritonPH service center for inspection, testing, and necessary repair.
+            </p>
+            <p className="mt-3">
+              KaritonPH will assess the product condition and determine the appropriate resolution, which may 
+              include repair, replacement of defective parts, or other applicable remedies based on the warranty terms.
+            </p>
+            <p className="mt-3">
+              Customers are advised to coordinate with KaritonPH customer support before sending any 
+              product to ensure proper handling and service instructions.
+            </p>
+          </RefundSectionItem>
+
+          <RefundSectionItem
+            number="10"
             title="Warranty and After-Sales Support"
           >
             <p>
-              Kariton PH supports customers beyond the purchase by providing
-              assistance for:
+              Kariton PH supports customers beyond the purchase by providing assistance for:
             </p>
             <ul className="mt-3 list-disc space-y-1 pl-5">
               <li>Product inquiries</li>
               <li>Filter replacement guidance</li>
               <li>Maintenance questions</li>
               <li>Installation concerns</li>
+              <li>Registering your product ensures warranty coverage, faster support, and access to exclusive offers.</li>
+              <li>Warranty coverage depends on the specific product purchased.</li>
             </ul>
             <p className="mt-3">
-              Warranty coverage depends on the specific product purchased.
-              Customers should keep their proof of purchase for warranty
-              claims.
+              Customers should keep their proof of purchase for warranty claims and register their 
+              product at email: 
+              <a href="https://customer.karitonph.com" 
+              className="font-medium text-(--color-blue) underline-offset-4 hover:underline hover:text-(--color-green)">
+              customer.karitonph.com</a>.
             </p>
           </RefundSectionItem>
 
-          <RefundSectionItem number="10" title="Customer Responsibility">
+          <RefundSectionItem number="11" title="Customer Responsibility">
             <p>Customers are responsible for:</p>
             <ul className="mt-3 list-disc space-y-1 pl-5">
               <li>Checking product compatibility before purchase</li>
