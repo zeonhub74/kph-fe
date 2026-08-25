@@ -39,9 +39,9 @@ function Home() {
   return (
     <div>
       <HomeBanner
-        title="KARITONPH"
+        title={<img src="/KPH-Logo-Text-W.png" alt="KARITONPH" className="h-15" />}
         subtitle="Empowering Filipino Retailers and Online Sellers with practical, high-quality, transformative home and business solutions"
-      />
+      />  
       <section className="grid gap-8 md:grid-cols-3 p-6 mb-2 items-center justify-left">
         <p>
           Bringing value to Filipinos through products rooted in integrity and practicality.
@@ -57,7 +57,7 @@ function Home() {
       <section className={`grid gap-0 mb-8 ${isAdmin ? 'md:grid-cols-2' : 'md:grid-cols-2'}`}>
         {featuredProducts.length > 0
           ? featuredProducts.map((product) => (
-              <article key={product.id} className="p-0">
+              <article key={product.id} className="p-0  text-justify">
                 <div className="relative mt-2 h-80 w-full overflow-hidden">
                   <img
                     src={product.images.edges[0]?.node.url}
