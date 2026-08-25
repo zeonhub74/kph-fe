@@ -285,9 +285,9 @@ export default function Refund() {
             <p className="mt-3">
               Customers should keep their proof of purchase for warranty claims and register their 
               product at email: 
-              <a href="mailto:customer@karitonph.com" 
+              <a href="https://customer.karitonph.com" 
               className="font-medium text-(--color-blue) underline-offset-4 hover:underline hover:text-(--color-green)">
-              customer@karitonph.com</a>.
+              customer.karitonph.com</a>.
             </p>
           </RefundSectionItem>
 
