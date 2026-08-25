@@ -11,6 +11,7 @@ import ProductDetails from './pages/ProductDetails'
 import Products from './pages/Products'
 import Profile from './pages/Profile'
 import Register from './pages/Register'
+import Refund from './pages/Refund'
 import { ProductSettingsProvider } from './context/ProductSettingsContext'
 import { sessionHasAdminRole, useAuthSession } from './hooks/api/useLogin'
 
@@ -60,6 +61,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/terms" element={<Terms />} />
+        <Route path="/refund" element={<Refund />} />
         <Route
           path="/profile"
           element={(

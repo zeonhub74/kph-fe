@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
 function TermsSectionItem({ number, title, children }) {
   return (
-    <section className="border-b border-border pb-8 last:border-b-0">
+    <section className="border-b border-(--color-light-gray) pb-8 last:border-b-0">
       <h2 className="text-xl font-semibold text-foreground">
         {number}. {title}
       </h2>
@@ -11,21 +13,18 @@ function TermsSectionItem({ number, title, children }) {
 
 export default function Terms() {
   return (
-    <main className="min-h-screen bg-background px-4 py-16 sm:px-6 lg:px-8">
+    <main className="min-h-screen bg-background px-4 py-16 sm:px-6 lg:px-8 text-justify">
       <article className="mx-auto max-w-3xl">
         <header className="border-b border-border pb-8">
           <p className="mb-3 text-sm font-medium text-primary">Kariton PH</p>
           <h1 className="text-3xl font-bold text-foreground sm:text-4xl">
             Terms and Conditions
           </h1>
-          <p className="mt-4 max-w-2xl leading-7 text-muted-foreground">
+          <p className="mt-4 leading-7 text-muted-foreground">
             These Terms and Conditions (&ldquo;Terms&rdquo;) govern your
             access to and use of the Kariton PH website and services (the
             &ldquo;Services&rdquo;). By accessing or using the Services, you
             agree to be bound by these Terms.
-          </p>
-          <p className="mt-3 text-sm text-muted-foreground">
-            Last updated: August 24, 2026
           </p>
         </header>
 
@@ -75,11 +74,12 @@ export default function Terms() {
 
           <TermsSectionItem number="5" title="Returns and Refunds">
             <p>
-              Insert your return, replacement, cancellation, and refund
-              policy here, including applicable timeframes, eligibility
-              criteria, and the condition in which products must be
-              returned. This section should clearly state any exceptions,
-              such as perishable goods or items marked as final sale.
+              For information regarding product returns, replacements, cancellations, and refunds, 
+              including applicable timeframes, eligibility requirements, return conditions, and any 
+              applicable exceptions, please refer to our{' '}
+              <Link to="/ref" className="underline text-blue-600 hover:text-(--color-blue)">
+                Return and Refund Policy
+              </Link>
             </p>
           </TermsSectionItem>
 
@@ -159,15 +159,18 @@ export default function Terms() {
               If you have any questions or concerns regarding these Terms,
               please contact us at{" "}
               <a
-                href="mailto:karitonph@gmail.com"
+                href="mailto:admin@karitonPH.com"
                 className="font-medium text-primary underline-offset-4 hover:underline"
               >
-                karitonph@gmail.com
+                admin@karitonPH.com
               </a>
-              .
+              
             </p>
           </TermsSectionItem>
         </div>
+          <p className="mt-5 text-xs text-muted-foreground">
+            Last updated: August 24, 2026
+          </p>
       </article>
     </main>
   );
