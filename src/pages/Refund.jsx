@@ -15,7 +15,10 @@ export default function Refund() {
       <article className="mx-auto max-w-3xl">
         <header className="border-b border-border pb-8">
           <p className="mb-3 text-sm font-medium text-primary">Kariton PH</p>
-          <h1 className="text-3xl font-bold text-foreground sm:text-4xl">
+          <h2 className="text-xl font-bold text-foreground sm:text-xl">
+            Delivery and Return Policy
+          </h2>
+          <h1 className="text-3xl font-bold text-foreground sm:text-3xl">
             We're Here to Help
           </h1>
           <p className="mt-4 leading-7 text-muted-foreground">
@@ -28,7 +31,35 @@ export default function Refund() {
         </header>
 
         <div className="mt-10 space-y-8">
-          <RefundSectionItem number="1" title="Return Policy Overview">
+          <RefundSectionItem
+            number="1"
+            title="Product Inspection and Quality Assurance"
+          >
+            <p>
+              At Kariton PH, every unit is inspected and tested by our
+              trained technician before it ships, to make sure it meets our
+              quality standards. This includes:
+            </p>
+            <ul className="mt-3 list-disc space-y-1 pl-5">
+              <li>Confirming the correct model and accessories are included</li>
+              <li>Checking for visible defects or damage</li>
+              <li>Testing key functions and components</li>
+              <li>Checking connections and fittings where applicable</li>
+              <li>Confirming the product is in proper working condition</li>
+            </ul>
+            <p className="mt-3">
+              Only products that pass this inspection are approved for
+              shipment.
+            </p>
+            <p className="mt-3">
+              Please inspect your package upon delivery and report any
+              concerns, such as shipping damage, missing items, or product
+              issues, within the timeframe stated in our Returns and Refund
+              Policy below.
+            </p>
+          </RefundSectionItem>
+
+          <RefundSectionItem number="2" title="Return Policy Overview">
             <p>
               Kariton PH accepts returns or replacement requests for eligible
               products to ensure customer satisfaction. Customers are
@@ -40,7 +71,7 @@ export default function Refund() {
           </RefundSectionItem>
 
           <RefundSectionItem
-            number="2"
+            number="3"
             title="Eligible Reasons for Return or Replacement"
           >
             <p>
@@ -106,7 +137,7 @@ export default function Refund() {
             </p>
           </RefundSectionItem>
 
-          <RefundSectionItem number="3" title="Non-Returnable Items">
+          <RefundSectionItem number="4" title="Non-Returnable Items">
             <p>The following items are generally not eligible for return:</p>
             <ul className="mt-3 list-disc space-y-1 pl-5">
               <li>Products damaged due to improper installation</li>
@@ -122,7 +153,7 @@ export default function Refund() {
           </RefundSectionItem>
 
           <RefundSectionItem
-            number="4"
+            number="5"
             title="Product Installation Considerations"
           >
             <p>
@@ -143,7 +174,7 @@ export default function Refund() {
             </p>
           </RefundSectionItem>
 
-          <RefundSectionItem number="5" title="Refund Policy">
+          <RefundSectionItem number="6" title="Refund Policy">
             <p>
               Approved refunds will only be processed after product
               evaluation and confirmation of eligibility. Refunds may be
@@ -161,7 +192,7 @@ export default function Refund() {
             </p>
           </RefundSectionItem>
 
-          <RefundSectionItem number="6" title="Return Process">
+          <RefundSectionItem number="7" title="Return Process">
             <p>To request a return or replacement, please provide:</p>
             <ul className="mt-3 list-disc space-y-1 pl-5">
               <li>Customer name</li>
@@ -182,13 +213,13 @@ export default function Refund() {
                   className="font-medium text-primary text-(--color-blue) underline-offset-4 hover:underline hover:text-(--color-green)"
                 >
                 facebook.com/karitonphpurewater
-                </a>
+                </a>  
               </li>
               <li>
                 Email:{" "}
                 <a
                   href="mailto:admin@karitonph.com"
-                  className="font-medium text-primary underline-offset-4 hover:underline"
+                  className="font-medium text-(--color-blue) underline-offset-4 hover:underline hover:text-(--color-green)"
                 >
                   admin@karitonph.com
                 </a>
@@ -200,7 +231,7 @@ export default function Refund() {
             </p>
           </RefundSectionItem>
 
-          <RefundSectionItem number="7" title="Inspection and Approval">
+          <RefundSectionItem number="8" title="Inspection and Approval">
             <p>
               All returns are subject to inspection and approval by Kariton
               PH. After assessment, Kariton PH may provide one of the
@@ -216,7 +247,7 @@ export default function Refund() {
           </RefundSectionItem>
 
           <RefundSectionItem
-            number="8"
+            number="9"
             title="Warranty and After-Sales Support"
           >
             <p>
@@ -236,7 +267,7 @@ export default function Refund() {
             </p>
           </RefundSectionItem>
 
-          <RefundSectionItem number="9" title="Customer Responsibility">
+          <RefundSectionItem number="10" title="Customer Responsibility">
             <p>Customers are responsible for:</p>
             <ul className="mt-3 list-disc space-y-1 pl-5">
               <li>Checking product compatibility before purchase</li>
@@ -246,7 +277,7 @@ export default function Refund() {
             </ul>
           </RefundSectionItem>
 
-          <RefundSectionItem number="10" title="Policy Updates">
+          <RefundSectionItem number="11" title="Policy Updates">
             <p>
               Kariton PH reserves the right to update this Returns and
               Refund Policy when necessary. Any changes will be posted
@@ -254,13 +285,13 @@ export default function Refund() {
             </p>
           </RefundSectionItem>
 
-          <RefundSectionItem number="11" title="Contact Us">
+          <RefundSectionItem number="12" title="Contact Us">
             <p>
               If you have any questions or concerns regarding this policy,
               please contact us at{" "}
               <a
                 href="mailto:admin@karitonph.com"
-                className="font-medium text-primary underline-offset-4 hover:underline"
+                className="font-medium text-(--color-blue) underline-offset-4 hover:underline hover:text-(--color-green)"
               >
                 admin@karitonph.com 
               </a>
