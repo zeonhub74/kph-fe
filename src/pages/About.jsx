@@ -52,7 +52,7 @@ function About() {
               <span className="font-medium">Email:</span>{' '}
               <a
                 href="mailto:admin@karitonph.com"
-                className="text-(--color-blue) hover:underline"
+                className="text-(--color-blue) hover:underline hover:text-(--color-green)"
               >
                 admin@karitonph.com
               </a>
@@ -63,7 +63,7 @@ function About() {
                 href="https://www.facebook.com/karitonphpurewater"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-(--color-blue) hover:underline"
+                className="text-(--color-blue) hover:underline hover:text-(--color-green)"
               >
                 facebook.com/karitonphpurewater
               </a>
@@ -74,7 +74,7 @@ function About() {
                 href="https://www.instagram.com/karitonphpurewater"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-(--color-blue) hover:underline"
+                className="text-(--color-blue) hover:underline hover:text-(--color-green)"
               >
                 instagram.com/karitonphpurewater
               </a>
@@ -85,7 +85,7 @@ function About() {
                 href="https://www.tiktok.com/@karitonphpurewater"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-(--color-blue) hover:underline"
+                className="text-(--color-blue) hover:underline hover:text-(--color-green)"
               >
                 tiktok.com/@karitonphpurewater
               </a>
