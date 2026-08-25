@@ -70,7 +70,7 @@ export default function Refund() {
             </p>
           </RefundSectionItem>
 
-          <RefundSectionItem
+         <RefundSectionItem
             number="3"
             title="Eligible Reasons for Return or Replacement"
           >
@@ -80,7 +80,7 @@ export default function Refund() {
             </p>
 
             <h3 className="mt-5 font-medium text-foreground">
-              A. Damaged Upon Delivery
+              A. Damaged Upon Delivery (Reported Issue before 48 hours)
             </h3>
             <p className="mt-2">
               If the product arrives with visible damage caused during
@@ -99,7 +99,9 @@ export default function Refund() {
             </ul>
             <p className="mt-3">
               Kariton PH will evaluate the concern and provide the
-              appropriate resolution.
+              appropriate resolution. The customer is required to send or
+              bring the product to an authorized service center for
+              inspection.
             </p>
 
             <h3 className="mt-5 font-medium text-foreground">
@@ -133,7 +135,8 @@ export default function Refund() {
             </ul>
             <p className="mt-3">
               Kariton PH will assess whether the concern is covered under
-              warranty.
+              warranty. The customer is required to send or bring the
+              product to an authorized service center for inspection.
             </p>
           </RefundSectionItem>
 
