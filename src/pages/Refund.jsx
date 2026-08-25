@@ -179,9 +179,9 @@ export default function Refund() {
                   href="https://www.facebook.com/karitonphpurewater"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-medium text-primary text-(--color-blue) underline-offset-4 hover:underline"
+                  className="font-medium text-primary text-(--color-blue) underline-offset-4 hover:underline hover:text-(--color-green)"
                 >
-                  https://www.facebook.com/karitonphpurewater
+                facebook.com/karitonphpurewater
                 </a>
               </li>
               <li>
