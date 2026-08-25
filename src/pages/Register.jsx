@@ -24,7 +24,8 @@ function Register() {
   return (
     <div>
       <PageIntro title="Register" subtitle="Create your account to start managing products and categories." />
-      <form onSubmit={handleSubmit} className="grid max-w-md gap-4 rounded-2xl border border-(--sand-200) bg-white p-6">
+      <div className="flex flex-col px-4 justify-left mb-8">
+      <form onSubmit={handleSubmit} className="grid max-w-md gap-4 rounded-2xl border border-(--color-light-gray) bg-white p-6">
         {error ? <p className="rounded-xl bg-red-50 px-4 py-2 text-sm text-red-700">{error}</p> : null}
         <label className="grid gap-2">
           <span className="text-sm font-medium">Name</span>
@@ -61,12 +62,13 @@ function Register() {
         </label>
         <button
           type="submit"
-          className="rounded-xl bg-(--accent-500) px-4 py-2 font-semibold text-white hover:bg-(--accent-700) disabled:cursor-not-allowed disabled:opacity-70"
+          className="rounded-xl green-button px-4 py-2 font-semibold disabled:cursor-not-allowed disabled:opacity-70"
           disabled={loading}
         >
           {loading ? 'Creating Account...' : 'Create Account'}
         </button>
       </form>
+    </div>
     </div>
   )
 }
