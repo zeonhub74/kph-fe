@@ -67,7 +67,7 @@ function Login() {
         </button>
         <p className="text-sm select-none">
           No account yet?{' '}
-          <Link to="/register" className="font-semibold text-(--color-blue) hover:text-(--color-green)">
+          <Link to="/register" className="underline text-(--color-blue) hover:text-(--color-green)">
             Create account
           </Link>
         </p>

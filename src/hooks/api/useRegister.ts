@@ -6,6 +6,7 @@ export type RegisterPayload = {
 	name: string
 	email: string
 	password: string
+	terms_accepted: boolean
 }
 
 export type RegisterAuthUser = {
