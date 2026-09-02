@@ -127,6 +127,17 @@ function Dashboard() {
         </div>
         </div>
 
+      {/* ==== ADVERTISEMENTS ==== */}
+      <div>
+        <p className="text-lg font-bold px-4 py-0 uppercase tracking-widest">Advertisements</p>
+      </div>
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 px-4 py-2 mb-4">
+        <Link to="/manage-ads" className="rounded-2xl border border-gray-200 p-5 lg:col-span-2 shadow-sm hover:shadow-lg">
+          <p className="text-2xl font-bold">Manage Advertisements</p>
+          <p className="mt-2 text-sm text-gray-600">Upload, activate, edit, and delete promotional banner images.</p>
+        </Link>
+      </div>
+
      {/* ==== SETTINGS ==== */}
       <div>
         <p className="text-lg font-bold px-4 py-0 uppercase tracking-widest">Settings</p>
