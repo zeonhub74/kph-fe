@@ -5,6 +5,7 @@ import { sessionHasAdminRole, useAuthSession } from '../../hooks/api/useLogin'
 import { useAds } from '../../hooks/api/useAds'
 import { Switch } from '@/components/ui/switch'
 import { Label } from '@/components/ui/label'
+import { Spinner } from '@/components/ui/spinner'
 
 const MAX_FILE_SIZE_BYTES = 5 * 1024 * 1024 // 5MB limit
 const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/svg+xml']
@@ -28,6 +29,7 @@ function ManageAds() {
   const [ads, setAds] = useState([])
   const [statusMessage, setStatusMessage] = useState('')
   const [actionError, setActionError] = useState('')
+  const [togglingAdId, setTogglingAdId] = useState(null)
 
   // Modal states
   const [isUploadOpen, setIsUploadOpen] = useState(false)
@@ -129,14 +131,14 @@ function ManageAds() {
 
     setIsSubmitting(true)
     try {
-      // 1. Upload image to Storage
-      const imagePath = await uploadAdImage(uploadFile)
-
-      // 2. Insert record into DB
       if (!accessToken) {
         throw new Error('Your session has expired. Please sign in again.')
       }
 
+      // 1. Upload image to Storage
+      const imagePath = await uploadAdImage(uploadFile, accessToken)
+
+      // 2. Insert record into DB
       await createAd({
         image_path: imagePath,
         alt_text: uploadAltText.trim() || null,
@@ -166,18 +168,32 @@ function ManageAds() {
 
   // Toggle Active/Inactive directly
   const handleToggleActive = async (ad) => {
+    if (togglingAdId) return
+
     setActionError('')
     setStatusMessage('')
     const newStatus = !ad.is_active
+    setTogglingAdId(ad.id)
+    setAds((currentAds) => currentAds.map((currentAd) => (
+      currentAd.id === ad.id ? { ...currentAd, is_active: newStatus } : currentAd
+    )))
+
     try {
       if (!accessToken) {
         throw new Error('Your session has expired. Please sign in again.')
       }
-      await updateAd(ad.id, { is_active: newStatus }, accessToken)
-      await loadAdsList()
+      const updatedAd = await updateAd(ad.id, { is_active: newStatus }, accessToken)
+      setAds((currentAds) => currentAds.map((currentAd) => (
+        currentAd.id === ad.id ? { ...currentAd, ...updatedAd } : currentAd
+      )))
       setStatusMessage(`Advertisement set to ${newStatus ? 'Active' : 'Inactive'}.`)
     } catch (err) {
+      setAds((currentAds) => currentAds.map((currentAd) => (
+        currentAd.id === ad.id ? { ...currentAd, is_active: ad.is_active } : currentAd
+      )))
       setActionError(err?.message || 'Failed to update advertisement status.')
+    } finally {
+      setTogglingAdId(null)
     }
   }
 
@@ -217,7 +233,7 @@ function ManageAds() {
 
       // If replacing image file
       if (editReplacementFile) {
-        newImagePath = await uploadAdImage(editReplacementFile)
+        newImagePath = await uploadAdImage(editReplacementFile, accessToken)
       }
 
       // Update DB record
@@ -229,7 +245,7 @@ function ManageAds() {
 
       // Remove old image from storage if replaced
       if (newImagePath && oldImagePath) {
-        await deleteAdImage(oldImagePath)
+        await deleteAdImage(oldImagePath, accessToken)
       }
 
       closeEditModal()
@@ -317,11 +333,11 @@ function ManageAds() {
             </h2>
           </div>
 
-          {adsLoading && ads.length === 0 ? (
-            <div className="rounded-2xl border border-gray-200 p-8 text-center text-gray-500">
-              Loading advertisements...
+            {adsLoading && ads.length === 0 ? (
+            <div className="flex items-center justify-center rounded-2xl border border-gray-200 p-8 text-gray-500">
+            <Spinner className="size-5" />
             </div>
-          ) : !adsLoading && ads.length === 0 ? (
+            ) : !adsLoading && ads.length === 0 ? (
             <div className="rounded-2xl border border-gray-200 p-12 text-center shadow-sm">
               <p className="text-lg font-semibold text-gray-700">No advertisements found</p>
               <p className="mt-1 text-sm text-gray-500">
@@ -406,6 +422,7 @@ function ManageAds() {
                         id={`status-toggle-${ad.id}`}
                         checked={ad.is_active}
                         onCheckedChange={() => handleToggleActive(ad)}
+                        disabled={togglingAdId !== null}
                         aria-label="Toggle advertisement status"
                       />
                       <Label htmlFor={`status-toggle-${ad.id}`} className="text-xs text-gray-600 cursor-pointer">

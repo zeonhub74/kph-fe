@@ -1,4 +1,4 @@
-import { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react'
+import { createContext, useCallback, useContext, useEffect, useState } from 'react'
 import { getProductPriceSettings, updateProductPriceSettings } from '../api/settings/route'
 import { useAuthSession } from '../hooks/api/useLogin'
 
@@ -8,13 +8,10 @@ export function ProductSettingsProvider({ children }) {
   const session = useAuthSession()
   const [isPriceDisabled, setIsPriceDisabledState] = useState(false)
   const [loading, setLoading] = useState(true)
+  const [isSaving, setIsSaving] = useState(false)
   const [error, setError] = useState(null)
-  const hasFetchedRef = useRef(false)
 
   useEffect(() => {
-    if (hasFetchedRef.current) return
-    hasFetchedRef.current = true
-
     let cancelled = false
     ;(async () => {
       try {
@@ -33,7 +30,9 @@ export function ProductSettingsProvider({ children }) {
   const setIsPriceDisabled = useCallback(
     async (nextValue) => {
       const previousValue = isPriceDisabled
+      setError(null)
       setIsPriceDisabledState(nextValue)
+      setIsSaving(true)
       try {
         const token = session?.access_token
         if (!token) throw new Error('Missing auth token.')
@@ -42,13 +41,15 @@ export function ProductSettingsProvider({ children }) {
       } catch (err) {
         setIsPriceDisabledState(previousValue)
         setError(err)
+      } finally {
+        setIsSaving(false)
       }
     },
     [isPriceDisabled, session],
   )
 
   return (
-    <ProductSettingsContext.Provider value={{ isPriceDisabled, setIsPriceDisabled, loading, error }}>
+    <ProductSettingsContext.Provider value={{ isPriceDisabled, setIsPriceDisabled, loading, isSaving, error }}>
       {children}
     </ProductSettingsContext.Provider>
   )
