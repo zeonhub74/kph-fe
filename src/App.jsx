@@ -7,6 +7,7 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import ManageCategories from './pages/admin/ManageCategories'
 import ManageProducts from './pages/admin/ManageProducts'
+import ManageAds from './pages/admin/ManageAds'
 import ProductDetails from './pages/ProductDetails'
 import Products from './pages/Products'
 import Profile from './pages/Profile'
@@ -92,6 +93,14 @@ function App() {
             <RequireAuth>
               <ManageCategories />
             </RequireAuth>
+          )}
+        />
+        <Route
+          path="/manage-ads"
+          element={(
+            <RequireAdmin>
+              <ManageAds />
+            </RequireAdmin>
           )}
         />
         </Route>

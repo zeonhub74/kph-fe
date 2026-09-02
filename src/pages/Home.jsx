@@ -1,13 +1,16 @@
 ﻿import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import HomeBanner from '../components/ui/home-banner'
-import { sessionHasAdminRole, useAuthSession } from '../hooks/api/useLogin'
-import { useShopifyProducts } from '../hooks/api/useShopifyProducts'
+import { useNavigate } from 'react-router-dom'
+import HomeBanner from '@/components/ui/home-banner'
+import Ads from '@/components/ui/ads'
+import { sessionHasAdminRole, useAuthSession } from '@/hooks/api/useLogin'
+import { useShopifyProducts } from '@/hooks/api/useShopifyProducts'
 
 function Home() {
   const session = useAuthSession()
   const isAdmin = sessionHasAdminRole(session)
   const { fetchProducts } = useShopifyProducts()
+  const navigate = useNavigate()
   const [featuredProducts, setFeaturedProducts] = useState([])
 
   function pickRandomProducts(products, count) {
@@ -54,16 +57,21 @@ function Home() {
         </p>
       </section>
 
+      < Ads />
+
       <h2 className="px-6 text-2xl font-semibold leading-tight">Upgrading your home begins here</h2>
       <section className={`grid gap-0 mb-8 ${isAdmin ? 'md:grid-cols-2' : 'md:grid-cols-2'}`}>
         {featuredProducts.length > 0
           ? featuredProducts.map((product) => (
               <article key={product.id} className="p-0  text-justify">
-                <div className="relative mt-2 h-80 w-full overflow-hidden">
+                <div
+                  className="group relative mt-2 h-80 w-full overflow-hidden hover:cursor-pointer"
+                  onClick={() => navigate(`/products/${product.handle}`)}
+                >
                   <img
                     src={product.images.edges[0]?.node.url}
                     alt={product.images.edges[0]?.node.altText || product.title}
-                    className="h-full w-full object-cover select-none"
+                    className="h-full w-full object-cover select-none transition duration-300 group-hover:brightness-75"
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/25 to-transparent" />
                   <div className="absolute bottom-0 left-0 p-3 text-white select-none">
