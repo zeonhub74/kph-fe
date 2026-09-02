@@ -4,7 +4,7 @@ import { Eye, EyeOff } from 'lucide-react'
 import PageIntro from '../components/PageIntro'
 import { Input } from '@/components/ui/input'
 import { useRegister } from '../hooks/api/useRegister'
-import Ads from '../components/Ads'
+import Ads from '@/components/ui/ads'
 
 function Register() {
   const navigate = useNavigate()
