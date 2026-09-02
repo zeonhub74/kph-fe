@@ -10,7 +10,13 @@ function Dashboard() {
   const navigate = useNavigate()
   const session = useAuthSession()
   const { error } = useLogin()
-  const { isPriceDisabled, setIsPriceDisabled } = useProductSettings()
+  const {
+    isPriceDisabled,
+    setIsPriceDisabled,
+    loading: isPriceSettingsLoading,
+    isSaving: isPriceSettingsSaving,
+    error: priceSettingsError,
+  } = useProductSettings()
   const [statusMessage] = useState('')
 
   if (!sessionHasAdminRole(session)) {
@@ -21,6 +27,7 @@ function Dashboard() {
     <div className="mb-8">
       <PageIntro title="Dashboard for Admins" subtitle="Admin landing page for quick management actions." />
       {error ? <p className="mb-4 rounded-xl bg-red-50 px-4 py-2 text-sm text-red-700">{error}</p> : null}
+      {priceSettingsError ? <p className="mb-4 rounded-xl bg-red-50 px-4 py-2 text-sm text-red-700">{priceSettingsError.message}</p> : null}
       {statusMessage ? <p className="mb-4 rounded-xl bg-amber-50 px-4 py-2 text-sm text-amber-800">{statusMessage}</p> : null}
 
       {/* ==== PRODUCTS ==== */}
@@ -77,31 +84,31 @@ function Dashboard() {
         </div>
 
         {/* ==== ORDERS ==== */}
-        <div>
+        {/* <div>
           <p className="text-lg font-bold px-4 py-0 uppercase tracking-widest">Orders</p>
         </div>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 px-4 py-4 mb-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 px-4 py-4 mb-4"> */}
 
         {/* Pending Orders */}
-        <div className="rounded-2xl border border-gray-200  p-5 shadow-sm hover:shadow-lg">
+        {/* <div className="rounded-2xl border border-gray-200  p-5 shadow-sm hover:shadow-lg">
           <p className="text-sm text-gray-500">Pending Orders</p>
           <p className="mt-2 text-3xl font-bold">24</p>
           <p className="mt-2 text-xs text-orange-600">
             Requires attention
           </p>
-        </div>
+        </div> */}
 
         {/* Total Orders - Larger */}
-        <div className="rounded-2xl border border-gray-200 p-5 shadow-sm hover:shadow-lg">
+        {/* <div className="rounded-2xl border border-gray-200 p-5 shadow-sm hover:shadow-lg">
           <p className="text-sm text-gray-500">Total Orders</p>
           <p className="mt-2 text-4xl font-bold">1,284</p>
           <p className="mt-2 text-xs text-green-600">
             +12.5% from last month
           </p>
-        </div>
+        </div> */}
 
         {/* Revenue - Larger */}
-        <div className="rounded-2xl border border-gray-200 p-5 shadow-sm hover:shadow-lg">
+        {/* <div className="rounded-2xl border border-gray-200 p-5 shadow-sm hover:shadow-lg">
           <p className="text-sm text-gray-500">Total Sales / Revenue</p>
           <p className="mt-2 text-4xl font-bold">₱248,560</p>
           <p className="mt-2 text-xs text-green-600">
@@ -109,23 +116,23 @@ function Dashboard() {
           </p>
         </div>
 
-        </div>
+        </div> */}
 
 
       {/* ==== CUSTOMERS ==== */}
-      <div>
+      {/* <div>
         <p className="text-lg font-bold px-4 py-0 uppercase tracking-widest">Customers</p>
       </div>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 px-4 py-2 mb-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 px-4 py-2 mb-4"> */}
         {/* Customers */}
-        <div className="rounded-2xl border border-gray-200 p-5 shadow-sm hover:shadow-lg">
+        {/* <div className="rounded-2xl border border-gray-200 p-5 shadow-sm hover:shadow-lg">
           <p className="text-sm text-gray-500">Registered Customers</p>
           <p className="mt-2 text-3xl font-bold">542</p>
           <p className="mt-2 text-xs text-green-600">
             +24 this month
           </p>
         </div>
-        </div>
+        </div> */}
 
       {/* ==== ADVERTISEMENTS ==== */}
       <div>
@@ -152,9 +159,10 @@ function Dashboard() {
               id="disable-product-price"
               checked={isPriceDisabled}
               onCheckedChange={setIsPriceDisabled}
+              disabled={isPriceSettingsLoading || isPriceSettingsSaving}
               aria-label="Disable product prices"
             />
-            <Label htmlFor="disable-product-price">{isPriceDisabled ? 'Disabled' : 'Enabled'}</Label>
+            <Label htmlFor="disable-product-price">{isPriceSettingsSaving ? 'Saving...' : isPriceDisabled ? 'Disabled' : 'Enabled'}</Label>
           </div>
         </div>
         </div>

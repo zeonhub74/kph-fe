@@ -431,6 +431,14 @@ export function useLogin() {
 
 			const hydratedSession = await hydrateSessionAppRole(normalizedResult)
 
+			const { error: sessionError } = await supabase.auth.setSession({
+				access_token: hydratedSession.access_token,
+				refresh_token: hydratedSession.refresh_token ?? '',
+			})
+			if (sessionError) {
+				throw sessionError
+			}
+
 			setSession(hydratedSession)
 			writeStoredSession(hydratedSession)
 			return hydratedSession
@@ -455,6 +463,7 @@ export function useLogin() {
 			setError(getApiErrorMessage(err))
 			throw err
 		} finally {
+			await supabase.auth.signOut()
 			setSession(null)
 			writeStoredSession(null)
 			setLoading(false)

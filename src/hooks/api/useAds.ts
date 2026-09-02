@@ -90,7 +90,7 @@ export function useAds() {
    * Uploads an advertisement image to Supabase Storage ('ads' bucket).
    * Returns the image_path.
    */
-  const uploadAdImage = useCallback(async (file: File): Promise<string> => {
+  const uploadAdImage = useCallback(async (file: File, accessToken: string): Promise<string> => {
     setLoading(true)
     setError(null)
     try {
@@ -102,6 +102,9 @@ export function useAds() {
         .upload(fileName, file, {
           cacheControl: '3600',
           upsert: false,
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
         })
 
       if (uploadErr) throw uploadErr
@@ -118,7 +121,7 @@ export function useAds() {
   /**
    * Removes an image file from Supabase Storage ('ads' bucket).
    */
-  const deleteAdImage = useCallback(async (imagePath: string): Promise<void> => {
+  const deleteAdImage = useCallback(async (imagePath: string, _accessToken: string): Promise<void> => {
     if (!imagePath) return
     try {
       const { error: removeErr } = await supabase.storage
@@ -177,7 +180,7 @@ export function useAds() {
       await deleteAdRequest(id, token)
 
       if (imagePath) {
-        await deleteAdImage(imagePath)
+        await deleteAdImage(imagePath, token)
       }
     } catch (err) {
       const msg = getApiErrorMessage(err)
