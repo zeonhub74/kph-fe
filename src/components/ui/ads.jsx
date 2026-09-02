@@ -81,7 +81,7 @@ function Ads({ count = DEFAULT_COLUMN_COUNT }) {
     <section className={`mb-8 mt-2 grid grid-cols-1 gap-0 ${desktopColumnClass}`}>
       {visibleAds.map((ad) => (
         <article key={ad.id} className="p-0">
-          <div className="relative h-64 w-full overflow-hidden md:h-80">
+          <div className="relative h-full w-full overflow-hidden">
             <img
               src={ad.imageUrl}
               alt={ad.alt_text || 'Advertisement'}
