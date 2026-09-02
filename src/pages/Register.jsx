@@ -1,10 +1,10 @@
 ﻿import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { Eye, EyeOff } from 'lucide-react'
-import PageIntro from '@/components/PageIntro'
+import PageIntro from '../components/PageIntro'
 import { Input } from '@/components/ui/input'
-import { useRegister } from '@/hooks/api/useRegister'
-import Ads from '@/components/ui/ads'
+import { useRegister } from '../hooks/api/useRegister'
+import Ads from '../components/Ads'
 
 function Register() {
   const navigate = useNavigate()
@@ -110,11 +110,9 @@ function Register() {
             </Link>
           </p>
         </form>
-
-        <div className="w-full max-w-md">
-          <Ads count={1} />
-        </div>
       </div>
+
+      <Ads count={1} />
     </div>
   )
 }
