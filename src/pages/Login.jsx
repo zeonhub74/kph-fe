@@ -2,6 +2,8 @@
 import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import PageIntro from '../components/PageIntro'
 import { useAuthSession, useLogin } from '../hooks/api/useLogin'
+import Ads from '@/components/ui/ads'
+import { Spinner } from '@/components/ui/spinner'
 
 function Login() {
   const navigate = useNavigate()
@@ -10,6 +12,7 @@ function Login() {
   const { loginUser, loading, error } = useLogin()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [adReady, setAdReady] = useState(false)
 
   const successMessage = location.state?.message
   const redirectTo = location.state?.from || '/profile'
@@ -32,47 +35,59 @@ function Login() {
   return (
     <div>
       <PageIntro title="Login" subtitle="Sign in with your account to access dashboard actions." />
-    <div className="flex flex-col items-center px-4 mb-8">
-      <form onSubmit={handleSubmit} className="grid w-full max-w-md gap-4 rounded-2xl border border-(--sand-200) bg-white p-6">
-        {successMessage ? <p className="rounded-xl bg-green-50 px-4 py-2 text-sm text-green-800">{successMessage}</p> : null}
-        {error ? <p className="rounded-xl bg-red-50 px-4 py-2 text-sm text-red-700">{error}</p> : null}
-        <label className="grid gap-2 select-none">
-          <span className="text-sm font-medium">Email</span>
-          <input
-            type="email"
-            className="rounded-xl border border-(--sand-200) px-4 py-2"
-            placeholder="you@example.com"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            required
-          />
-        </label>
-        <label className="grid gap-2 select-none">
-          <span className="text-sm font-medium">Password</span>
-          <input
-            type="password"
-            className="rounded-xl border border-(--sand-200) px-4 py-2"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            required
-          />
-        </label>
-        <button
-          type="submit"
-          className="rounded-xl green-button px-4 py-2 font-semibold text-white disabled:cursor-not-allowed disabled:opacity-70"
-          disabled={loading}
-        >
-          {loading ? 'Signing In...' : 'Sign In'}
-        </button>
-        <p className="text-sm select-none">
-          No account yet?{' '}
-          <Link to="/register" className="underline text-(--color-blue) hover:text-(--color-green)">
-            Create account
-          </Link>
-        </p>
-      </form>
-    </div>
+      <div className="relative flex min-h-[70vh] justify-center px-4 mb-8">
+        {!adReady ? (
+          <div className="absolute inset-0 z-10 flex items-center justify-center bg-white">
+            <Spinner />
+          </div>
+        ) : null}
+
+        <div className={`flex h-fit w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-(--sand-200) bg-white md:flex-row ${adReady ? '' : 'invisible'}`}>
+          <div className="hidden h-full w-1/2 md:block">
+            <Ads count={1} onReady={() => setAdReady(true)} />
+          </div>
+
+          <form onSubmit={handleSubmit} className="grid w-full content-center gap-4 p-6 md:w-1/2">
+            {successMessage ? <p className="rounded-xl bg-green-50 px-4 py-2 text-sm text-green-800">{successMessage}</p> : null}
+            {error ? <p className="rounded-xl bg-red-50 px-4 py-2 text-sm text-red-700">{error}</p> : null}
+            <label className="grid gap-2 select-none">
+              <span className="text-sm font-medium">Email</span>
+              <input
+                type="email"
+                className="rounded-xl border border-(--sand-200) px-4 py-2"
+                placeholder="you@example.com"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                required
+              />
+            </label>
+            <label className="grid gap-2 select-none">
+              <span className="text-sm font-medium">Password</span>
+              <input
+                type="password"
+                className="rounded-xl border border-(--sand-200) px-4 py-2"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                required
+              />
+            </label>
+            <button
+              type="submit"
+              className="rounded-xl green-button px-4 py-2 font-semibold text-white disabled:cursor-not-allowed disabled:opacity-70"
+              disabled={loading}
+            >
+              {loading ? 'Signing In...' : 'Sign In'}
+            </button>
+            <p className="text-sm select-none">
+              No account yet?{' '}
+              <Link to="/register" className="underline text-(--color-blue) hover:text-(--color-green)">
+                Create account
+              </Link>
+            </p>
+          </form>
+        </div>
+      </div>
     </div>
   )
 }
