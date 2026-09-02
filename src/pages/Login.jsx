@@ -32,8 +32,8 @@ function Login() {
   return (
     <div>
       <PageIntro title="Login" subtitle="Sign in with your account to access dashboard actions." />
-    <div className="flex flex-col px-4 justify-left mb-8">
-      <form onSubmit={handleSubmit} className="grid max-w-md gap-4 rounded-2xl border border-(--sand-200) bg-white p-6">
+    <div className="flex flex-col items-center px-4 mb-8">
+      <form onSubmit={handleSubmit} className="grid w-full max-w-md gap-4 rounded-2xl border border-(--sand-200) bg-white p-6">
         {successMessage ? <p className="rounded-xl bg-green-50 px-4 py-2 text-sm text-green-800">{successMessage}</p> : null}
         {error ? <p className="rounded-xl bg-red-50 px-4 py-2 text-sm text-red-700">{error}</p> : null}
         <label className="grid gap-2 select-none">
@@ -78,4 +78,3 @@ function Login() {
 }
 
 export default Login
-

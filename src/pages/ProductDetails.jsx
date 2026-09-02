@@ -94,15 +94,15 @@ function ProductDetails() {
           title="Product Details"
           subtitle="View live product details from our Shopify store."
         />
-    <div className="px-6">
+    <div className="px-4 sm:px-6">
       {invalidHandle ? <p className="mb-4 rounded-xl bg-red-50 px-4 py-2 text-sm text-red-700">Invalid product.</p> : null}
       {error && !invalidHandle ? <p className="mb-4 rounded-xl bg-red-50 px-4 py-2 text-sm text-red-700">{error}</p> : null}
       {buyError ? <p className="mb-4 rounded-xl bg-red-50 px-4 py-2 text-sm text-red-700">{buyError}</p> : null}
       {showSkeleton && !invalidHandle ? (
       <div className="flex justify-center">
-        <section className={`flex w-full max-w-4xl animate-pulse gap-5 rounded-2xl p-3 ${isSkeletonExiting ? 'products-skeleton-exit' : ''}`.trim()}>
+        <section className={`flex w-full max-w-4xl animate-pulse flex-col gap-5 rounded-2xl p-3 sm:flex-row ${isSkeletonExiting ? 'products-skeleton-exit' : ''}`.trim()}>
           {/* Image */}
-          <div className="h-80 w-80 shrink-0 rounded-xl bg-(--color-light-gray)/60" />
+          <div className="aspect-square w-full shrink-0 rounded-xl bg-(--color-light-gray)/60 sm:h-80 sm:w-80" />
 
           {/* Right content */}
           <div className="flex flex-1 flex-col">
@@ -130,12 +130,12 @@ function ProductDetails() {
       ) : null}
       {shouldShowContent && !error && !invalidHandle && product ? (
         <div className="page-enter flex justify-center">
-          <section className="flex w-full max-w-4xl flex-row gap-4 rounded-xl p-3">
+          <section className="flex w-full max-w-4xl flex-col gap-4 rounded-xl p-3 sm:flex-row">
             {/* Image */}
             <img
               src={product.images.edges[0]?.node.url}
               alt={product.images.edges[0]?.node.altText || product.title}
-              className="max-h-100 max-w-90 shrink-0 rounded-base object-cover"
+              className="max-h-80 w-full shrink-0 rounded-base object-cover sm:max-h-100 sm:max-w-90 sm:w-auto"
             />
 
             {/* Product details */}
@@ -144,7 +144,7 @@ function ProductDetails() {
                 {product.productType || 'Uncategorized'}
               </p> */}
 
-            <h2 className="mt-2 text-2xl font-semibold text-(--ink-900)">
+            <h2 className="mt-2 text-xl font-semibold text-(--ink-900) sm:text-2xl">
               {product.title}
             </h2>
 
@@ -162,7 +162,7 @@ function ProductDetails() {
                   id="variant"
                   value={selectedVariantId}
                   onChange={(event) => setSelectedVariantId(event.target.value)}
-                  className="mt-1 rounded-base border border-(--sand-200) px-2 py-1 text-sm"
+                  className="mt-1 w-full rounded-base border border-(--sand-200) px-2 py-1 text-sm sm:w-auto"
                 >
                   {variants.map((variant) => (
                     <option key={variant.id} value={variant.id} disabled={!variant.availableForSale}>
@@ -211,4 +211,3 @@ function ProductDetails() {
 }
 
 export default ProductDetails
-

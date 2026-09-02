@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useAds } from '@/hooks/api/useAds'
 
-const COLUMN_COUNT = 3
+const DEFAULT_COLUMN_COUNT = 3
 const ROTATION_INTERVAL_MS = 3 * 60 * 60 * 1000 // 3 hours
 const CHECK_INTERVAL_MS = 60 * 1000 // re-check every minute in case the tab stays open
 
@@ -33,7 +33,7 @@ function pickForBucket(items, bucket, count) {
   return shuffled.slice(0, Math.min(count, shuffled.length))
 }
 
-function Ads() {
+function Ads({ count = DEFAULT_COLUMN_COUNT }) {
   const { fetchAds } = useAds()
   const [allAds, setAllAds] = useState([])
   const [bucket, setBucket] = useState(currentTimeBucket())
@@ -66,7 +66,7 @@ function Ads() {
     return () => clearInterval(id)
   }, [])
 
-  const visibleAds = pickForBucket(allAds, bucket, COLUMN_COUNT)
+  const visibleAds = pickForBucket(allAds, bucket, count)
 
   if (visibleAds.length === 0) return null
 
