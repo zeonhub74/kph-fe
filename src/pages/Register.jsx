@@ -84,12 +84,12 @@ function Register() {
           />
           <span>
             I have read and agree to the{' '}
-            <Link to="/terms" target="_blank" className="underline text-(--color-blue) hover:text-(--color-green)">
+            <Link to="/terms" className="underline text-(--color-blue) hover:text-(--color-green)">
               Terms and Conditions
             </Link>{' '}
             {/* and{' '}
             <Link to="/privacy" target="_blank" className="underline">
-              Privacy Policy
+              Privacy Policy  
             </Link> */}
             .
           </span>
