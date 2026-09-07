@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 function RefundSectionItem({ number, title, children }) {
   return (
     <section className="border-b border-(--color-light-gray) pb-8 last:border-b-0">
@@ -6,6 +8,44 @@ function RefundSectionItem({ number, title, children }) {
       </h2> 
       <div className="mt-3 leading-7 text-muted-foreground">{children}</div>
     </section>
+  );
+}
+
+function ScrollToTopButton() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 400);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  if (!visible) return null;
+
+  return (
+    <button
+      type="button"
+      onClick={scrollToTop}
+      aria-label="Scroll to top"
+      className="fixed bottom-6 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-(--color-blue) text-white shadow-lg transition-colors hover:bg-(--color-green) focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-(--color-blue)"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="h-5 w-5"
+      >
+        <path d="M18 15l-6-6-6 6" />
+      </svg>
+    </button>
   );
 }
 
@@ -18,7 +58,7 @@ export default function Refund() {
           <h2 className="text-xl font-semibold text-foreground sm:text-xl">
             Delivery and After-Sales Policy
           </h2>
-          <h1 className="text-3xl font-bold text-foreground sm:text-3xl">
+          <h1 className="text-4xl font-bold text-foreground">
             We're Here to Help
           </h1>
           <p className="mt-4 leading-7 text-muted-foreground">
@@ -213,7 +253,7 @@ export default function Refund() {
                   href="https://www.facebook.com/karitonphpurewater"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-medium text-primary text-(--color-blue) underline-offset-4 hover:underline hover:text-(--color-green)"
+                  className="font-medium text-(--color-blue) underline-offset-4 hover:underline hover:text-(--color-green)"
                 >
                 facebook.com/karitonphpurewater
                 </a>  
@@ -332,6 +372,7 @@ export default function Refund() {
             Last updated: August 24, 2026
           </p>
       </article>
+      <ScrollToTopButton />
     </main>
   );
 }
