@@ -1,12 +1,11 @@
 ﻿import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import { Eye, EyeOff } from 'lucide-react'
+import { Eye, EyeOff, Rocket, Sparkles, ShieldCheck } from 'lucide-react'
 import PageIntro from '../components/PageIntro'
 import { Input } from '@/components/ui/input'
 import { useRegister } from '../hooks/api/useRegister'
 import Ads from '@/components/ui/ads'
 import { Spinner } from '@/components/ui/spinner'
-
 function Register() {
   const navigate = useNavigate()
   const { registerUser, loading, error } = useRegister()
@@ -28,17 +27,26 @@ function Register() {
     }
   }
 
+  if (!adReady) {
+    return (
+      <div>
+        <PageIntro title="Register" subtitle="Create your account to start managing products and categories." />
+        {/* Kept mounted (but hidden) so the ad can load and fire onReady */}
+        <div className="hidden">
+          <Ads count={1} onReady={() => setAdReady(true)} />
+        </div>
+        <div className="flex min-h-[70vh] w-full items-center justify-center px-4">
+          <Spinner />
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div>
       <PageIntro title="Register" subtitle="Create your account to start managing products and categories." />
-      <div className="relative flex min-h-[70vh] justify-center px-4 mb-8">
-        {!adReady ? (
-          <div className="absolute inset-0 z-10 flex items-center justify-center bg-white">
-            <Spinner />
-          </div>
-        ) : null}
-
-        <div className={`flex h-fit w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-(--color-light-gray) bg-white md:flex-row ${adReady ? '' : 'invisible'}`}>
+      <div className="flex min-h-[70vh] justify-center px-4 mb-8">
+        <div className="flex h-fit w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-(--color-light-gray) bg-white md:flex-row">
           <form onSubmit={handleSubmit} className="grid w-full content-center gap-4 p-6 md:w-1/2">
             <h2 className="text-center text-xl font-semibold">Create a KaritonPH account</h2>
             {error ? <p className="rounded-xl bg-red-50 px-4 py-2 text-sm text-red-700">{error}</p> : null}
@@ -124,6 +132,51 @@ function Register() {
             <Ads count={1} onReady={() => setAdReady(true)} />
           </div>
         </div>
+      </div>
+
+      <div className="items-center justify-center m-10 grid gap-4">
+        <section className="w-full max-w-6xl grid gap-6 md:grid-cols-3">
+          <Link
+            to="/home"
+            className="group rounded-2xl border border-(--color-light-gray) bg-white p-6 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-md hover:border-(--color-green)"
+          >
+            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-(--color-green)/10 text-(--color-green) transition group-hover:bg-(--color-green)/20">
+              <Rocket className="h-6 w-6" />
+            </div>
+            <h2 className="text-lg font-semibold">Browse Our Products</h2>
+            <p className="mt-3 text-sm leading-6 text-chart-4">
+              Discover simple, practical solutions designed to make everyday living and business easier.
+            </p>
+          </Link>
+
+          <Link
+            to="/products"
+            className="group rounded-2xl border border-(--color-light-gray) bg-white p-6 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-md hover:border-(--color-blue)"
+          >
+            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-(--color-blue)/10 text-(--color-blue) transition group-hover:bg-(--color-blue)/20">
+              <Sparkles className="h-6 w-6" />
+            </div>
+            <h2 className="text-lg font-semibold">Nationwide Delivery</h2>
+            <p className="mt-3 text-sm leading-6 text-chart-4">
+              Fast, reliable shipping to homes across the Philippines.
+            </p>
+          </Link>
+
+          <a
+            href="https://customer.karitonph.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group rounded-2xl border border-(--color-light-gray) bg-white p-6 text-center shadow-sm transition hover:-translate-y-1 hover:shadow-md hover:border-(--color-green)"
+          >
+            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-(--color-green)/10 text-(--color-green) transition group-hover:bg-(--color-green)/20">
+              <ShieldCheck className="h-6 w-6" />
+            </div>
+            <h2 className="text-lg font-semibold">Register Your Appliance</h2>
+            <p className="mt-3 text-sm leading-6 text-chart-4">
+              Upload proof photos, activate your warranty, and unlock more promos.
+            </p>
+          </a>
+        </section>
       </div>
     </div>
   )

@@ -59,7 +59,7 @@ function Home() {
 
       < Ads />
 
-      <h2 className="px-6 text-2xl font-semibold leading-tight">Upgrading your home begins here</h2>
+      <h2 className="px-6 mt-8 text-2xl font-semibold leading-tight">Upgrading your home begins here</h2>
       <section className={`grid gap-0 mb-8 ${isAdmin ? 'md:grid-cols-2' : 'md:grid-cols-2'}`}>
         {featuredProducts.length > 0
           ? featuredProducts.map((product) => (

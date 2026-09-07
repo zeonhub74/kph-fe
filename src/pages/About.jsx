@@ -120,6 +120,35 @@ function About() {
           </p>
         </section>
       </div>
+
+      <div className="flex justify-center px-4 mb-12 sm:px-6">
+        <section className="w-full max-w-6xl text-(--color-b) border-t border-gray-200 pt-10">
+          <h2 className="text-2xl font-semibold md:text-3xl mb-2">
+            Our Policies
+          </h2>
+          <p className="text-base leading-relaxed md:text-lg mb-3">
+            Please review our policies below to better understand how we operate:
+          </p>
+          <ul className="space-y-1 text-base leading-relaxed md:text-lg">
+            <li>
+              <a
+                href="/terms"
+                className="text-(--color-blue) hover:underline hover:text-(--color-green)"
+              >
+                Terms and Conditions
+              </a>
+            </li>
+            <li>
+              <a
+                href="/refund"
+                className="text-(--color-blue) hover:underline hover:text-(--color-green)"
+              >
+                Delivery and After-Sales Policy
+              </a>
+            </li>
+          </ul>
+        </section>
+      </div>
     </div>
   )
 }

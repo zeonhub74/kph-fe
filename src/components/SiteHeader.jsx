@@ -1,16 +1,22 @@
 ﻿import { NavLink } from 'react-router-dom'
 import { sessionHasAdminRole, useAuthSession } from '@/hooks/api/useLogin'
 
-const navItems = [
+const primaryNavItems = [
   { to: '/', label: 'Home' },
   { to: '/products', label: 'Products' },
+]
+
+const secondaryNavItems = [
   { to: '/about', label: 'About' },
 ]
+
+const inactiveNavClass =
+  'rounded-full px-4 py-2 text-(--color-black) hover:bg-(--color-green) transition-colors duration-200 hover:text-white'
 
 function navClass({ isActive }) {
   return isActive
     ? 'rounded-full bg-(--color-green) px-4 py-2 text-white'
-    : 'rounded-full px-4 py-2 text-(--color-black) hover:bg-(--color-green) transition-colors duration-200 hover:text-white'
+    : inactiveNavClass
 }
 
 function SiteHeader() {
@@ -27,7 +33,20 @@ function SiteHeader() {
           </a>
         </div>
         <nav className="flex flex-wrap gap-2 text-sm font-medium">
-          {navItems.map((item) => (
+          {primaryNavItems.map((item) => (
+            <NavLink key={item.to} to={item.to} className={navClass}>
+              {item.label}
+            </NavLink>
+          ))}
+          <a
+            href="https://customer.karitonph.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={inactiveNavClass}
+          >
+            Customer Portal
+          </a>
+          {secondaryNavItems.map((item) => (
             <NavLink key={item.to} to={item.to} className={navClass}>
               {item.label}
             </NavLink>
@@ -53,4 +72,3 @@ function SiteHeader() {
 }
 
 export default SiteHeader
-

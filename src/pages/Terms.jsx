@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 function TermsSectionItem({ number, title, children }) {
@@ -11,14 +12,55 @@ function TermsSectionItem({ number, title, children }) {
   );
 }
 
+function ScrollToTopButton() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 400);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  if (!visible) return null;
+
+  return (
+    <button
+      type="button"
+      onClick={scrollToTop}
+      aria-label="Scroll to top"
+      className="fixed bottom-6 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-(--color-blue) text-white shadow-lg transition-colors hover:bg-(--color-green) focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-(--color-blue)"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="h-5 w-5"
+      >
+        <path d="M18 15l-6-6-6 6" />
+      </svg>
+    </button>
+  );
+}
+
 export default function Terms() {
   return (
     <main className="min-h-screen bg-background px-4 py-16 sm:px-6 lg:px-8 text-justify">
       <article className="mx-auto max-w-3xl">
         <header className="border-b border-border pb-8">
           <p className="mb-3 text-sm font-medium text-primary">Kariton PH</p>
-          <h1 className="text-3xl font-bold text-foreground sm:text-4xl">
+          <h2 className="text-xl font-semibold text-foreground sm:text-xl">
             Terms and Conditions
+          </h2>
+          <h1 className="text-3xl font-bold text-foreground">
+            How We Work Together
           </h1>
           <p className="mt-4 leading-7 text-muted-foreground">
             These Terms and Conditions (&ldquo;Terms&rdquo;) govern your
@@ -77,7 +119,7 @@ export default function Terms() {
               For information regarding product returns, replacements, cancellations, and refunds, 
               including applicable timeframes, eligibility requirements, return conditions, and any 
               applicable exceptions, please refer to our{' '}
-              <Link to="/ref" className="underline text-(--color-blue) hover:text-(--color-green)">
+              <Link to="/refund" className="underline text-(--color-blue) hover:text-(--color-green)">
                 Delivery and After-Sales Policy
               </Link>
             </p>
@@ -172,6 +214,8 @@ export default function Terms() {
             Last updated: August 24, 2026
           </p>
       </article>
+
+      <ScrollToTopButton />
     </main>
   );
 }

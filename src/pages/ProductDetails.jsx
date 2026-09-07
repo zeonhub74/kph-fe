@@ -6,6 +6,7 @@ import { useCart } from '../hooks/api/useCart'
 import JoinBanner from '../components/ui/join-banner'
 import { useProductSettings } from '../context/ProductSettingsContext'
 import { useNavigate } from "react-router-dom";
+import { ShoppingCart } from "lucide-react";
 
 function ProductDetails() {
   const { handle } = useParams()
@@ -75,26 +76,13 @@ function ProductDetails() {
   const invalidHandle = !handle
   const shouldShowContent = !loading && !showSkeleton
 
-  async function handleBuyNow() {
-    if (!selectedVariant) {
-      return
-    }
-
-    try {
-      const cart = await buyNow(selectedVariant.id, quantity)
-      window.location.href = cart.checkoutUrl
-    } catch {
-      // Error is exposed via buyError.
-    }
-  }
-
   return (
     <div>
         <PageIntro
           title="Product Details"
           subtitle="View live product details from our Shopify store."
         />
-    <div className="px-4 sm:px-6">
+    <div className="px-4 sm:px-6 p-6">
       {invalidHandle ? <p className="mb-4 rounded-xl bg-red-50 px-4 py-2 text-sm text-red-700">Invalid product.</p> : null}
       {error && !invalidHandle ? <p className="mb-4 rounded-xl bg-red-50 px-4 py-2 text-sm text-red-700">{error}</p> : null}
       {buyError ? <p className="mb-4 rounded-xl bg-red-50 px-4 py-2 text-sm text-red-700">{buyError}</p> : null}
@@ -173,7 +161,7 @@ function ProductDetails() {
               </div>
             ) : null}
 
-              {/* <div className="mt-4 flex items-center gap-2">
+             {/* <div className="mt-4 flex items-center gap-2">
               <label htmlFor="quantity" className="text-sm text-(--ink-700)">Qty</label>
               <input
                 id="quantity"
@@ -194,9 +182,19 @@ function ProductDetails() {
               {buyLoading ? 'Redirecting…' : selectedVariant && !selectedVariant.availableForSale ? 'Sold out' : 'Buy Now'}
             </button> */}
 
+            <a
+              href="https://shopee.ph/karitonph"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center rounded-2xl gap-2 blue-button px-5 py-2 text-sm font-semibold text-white"
+            >
+              <ShoppingCart className="h-4 w-4" />
+              Get this on Shopee
+            </a>
+
             <button
               onClick={() => navigate(-1)}
-              className="mt-4 block text-sm text-(--color-b)/50 hover:underline"
+              className="mt-6 block text-sm text-(--color-b)/50 hover:underline"
             >
               Back
             </button>
