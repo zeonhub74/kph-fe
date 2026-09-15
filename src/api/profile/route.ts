@@ -13,6 +13,7 @@ export type UserProfile = {
 	name: string
 	email: string
 	role: string
+	is_admin_manager?: boolean
 	created_at?: string
 }
 

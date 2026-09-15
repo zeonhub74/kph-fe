@@ -8,13 +8,15 @@ import Login from './pages/Login'
 import ManageCategories from './pages/admin/ManageCategories'
 import ManageProducts from './pages/admin/ManageProducts'
 import ManageAds from './pages/admin/ManageAds'
+import ManageUsers from './pages/admin/ManageUsers'
 import ProductDetails from './pages/ProductDetails'
 import Products from './pages/Products'
 import Profile from './pages/Profile'
 import Register from './pages/Register'
 import Refund from './pages/Refund'
 import { ProductSettingsProvider } from './context/ProductSettingsContext'
-import { sessionHasAdminRole, useAuthSession } from './hooks/api/useLogin'
+import { sessionHasAdminManagerAccess, sessionHasAdminRole, useAuthSession } from './hooks/api/useLogin'
+import { useProfile } from './hooks/api/useProfile'
 
 function hasStoredAccessToken() {
   try {
@@ -45,6 +47,25 @@ function RequireAdmin({ children }) {
 
   if (!sessionHasAdminRole(session)) {
     return <Navigate to="/" replace state={{ message: 'Admin access is required.' }} />
+  }
+
+  return children
+}
+
+function RequireAdminManager({ children }) {
+  const session = useAuthSession()
+  const { profile, loading } = useProfile()
+
+  if (!sessionHasAdminRole(session)) {
+    return <Navigate to="/" replace state={{ message: 'Admin access is required.' }} />
+  }
+
+  if (loading) {
+    return null
+  }
+
+  if (!sessionHasAdminManagerAccess(session, profile)) {
+    return <Navigate to="/dashboard" replace state={{ message: 'Admin Manager access is required.' }} />
   }
 
   return children
@@ -101,6 +122,14 @@ function App() {
             <RequireAdmin>
               <ManageAds />
             </RequireAdmin>
+          )}
+        />
+        <Route
+          path="/manage-users"
+          element={(
+            <RequireAdminManager>
+              <ManageUsers />
+            </RequireAdminManager>
           )}
         />
         </Route>
