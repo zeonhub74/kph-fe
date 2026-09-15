@@ -24,6 +24,7 @@ export type AuthUser = {
 
 export type AuthProfile = {
 	role?: unknown
+	is_admin_manager?: unknown
 	[key: string]: unknown
 }
 
@@ -373,6 +374,22 @@ export function sessionHasAdminRole(session: AuthSessionResponse | null) {
 	]
 
 	return roleCandidates.some((candidate) => includesAdminRole(candidate)) || includesAdminRoleInRecord(userRecord) || includesAdminRoleInRecord(tokenRecord) || includesAdminRoleInRecord(sessionRecord)
+}
+
+function hasAdminManagerIndicator(value: unknown) {
+	if (!isRecord(value)) {
+		return false
+	}
+
+	return value.is_admin_manager === true
+}
+
+export function sessionHasAdminManagerAccess(session: AuthSessionResponse | null, profile?: unknown) {
+	if (!sessionHasAdminRole(session)) {
+		return false
+	}
+
+	return hasAdminManagerIndicator(profile)
 }
 
 export function hasStoredAdminRole() {
