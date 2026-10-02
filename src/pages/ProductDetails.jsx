@@ -76,6 +76,15 @@ function ProductDetails() {
   const invalidHandle = !handle
   const shouldShowContent = !loading && !showSkeleton
 
+  async function handleBuyNow() {
+    if (!selectedVariant) return
+
+    try {
+      const cart = await buyNow(selectedVariant.id, quantity)
+      window.location.assign(cart.checkoutUrl)
+    } catch {}
+  }
+
   return (
     <div>
         <PageIntro
@@ -161,7 +170,7 @@ function ProductDetails() {
               </div>
             ) : null}
 
-             {/* <div className="mt-4 flex items-center gap-2">
+             <div className="mt-4 flex items-center gap-2">
               <label htmlFor="quantity" className="text-sm text-(--ink-700)">Qty</label>
               <input
                 id="quantity"
@@ -180,9 +189,9 @@ function ProductDetails() {
               className="mt-4 inline-block rounded-2xl green-button px-5 py-2 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50"
             >
               {buyLoading ? 'Redirecting…' : selectedVariant && !selectedVariant.availableForSale ? 'Sold out' : 'Buy Now'}
-            </button> */}
+            </button> 
 
-            <a
+            {/* <a
               href="https://shopee.ph/karitonph"
               target="_blank"
               rel="noopener noreferrer"
@@ -190,7 +199,7 @@ function ProductDetails() {
             >
               <ShoppingCart className="h-4 w-4" />
               Get this on Shopee
-            </a>
+            </a> */}
 
             <button
               onClick={() => navigate(-1)}
@@ -204,8 +213,8 @@ function ProductDetails() {
       ) : null}
     </div>
     < JoinBanner />
-  </div>
+  </div>    
   )
-}
+} 
 
-export default ProductDetails
+export default ProductDetails 
